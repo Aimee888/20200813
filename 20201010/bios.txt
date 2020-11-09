@@ -1,0 +1,67 @@
+BIOS(Basic Input Output System):
+    它是一组固化到计算机主板上的一个ROM芯片上的程序，保存着计算机最重要的基本输入输出的程序、开机自检程序和系统自启动程
+    序，可从CMOS中读写系统设置的具体信息。其主要功能是为计算机提供最底层的、最直接的硬件设置和控制。目前也被称为Legacy
+    BIOS(传统BIOS)。
+
+BIOS功能：
+    1. POST自检：通过读取CMOS中存储的硬件信息，识别硬件配置，并对硬件自检和初始化。
+    2. 引导操作系统：硬件自检成功后（硬盘已经被识别），跳转到操作系统引导分区，将引导程序读入内存，若成功读入，则进入操
+    作系统启动过程。
+    3. CMOS设置程序：在开机自检中，按下进入CMOS设置的快捷按键，则进入CMOS设置。设置结束后，若进行保存操作，则更新后的硬
+    件信息会存入CMOS中并重新进行自检，否则继续完成本次自检后续的过程。
+    4. 硬件I/O和中断服务：软件在一些对硬件底层的操作中，需要中断服务或硬件I/O操作，这就需要BIOS充当软件和硬件之间
+    “临时搭桥”的作用。
+
+BIOS芯片发展：
+    1. ROM（只读存储器），即Read-Only Memory，一次性制造，其中的代码与数据将永久保存，不能进行修改。
+    2. PROM（可编程只读存储器），即Programmable Read-Only Memory。这样产品只允许写入一次，所以也被称为“一次性编程只读存
+    储器”（One Time Programming ROM, OPT-ROM）。
+    3. EPROM（可擦写可编程只读存储器），即Erasable Programmable Rea-Only Memory。它的特点是具有可擦写功能，擦写后即可进
+    行在变成，但缺点是擦除需要紫外线照射一定的时间。还需要擦除器、编程器和编程电压。
+    4. EEPROM（电可擦除可编程只读存储器），即Electrically Erasable Programmable Read-Only Memory，最大的优点是可直接用电
+    信号擦除，也可以用电信号写入。刷新程序控制擦除和编程电压，可一次只擦除一个字节且擦除与写同时进行，速度慢。
+    5. Flash Memory(山村)，非易失性随机访问存储器，它的最大特点是必须安快擦除，速度相对于EEPROM快，不需要编程电压，便于
+    BIOS程序升级，最易收到CIH类病毒感染。NOR Flash应用于小容量的BIOS芯片；NAND Flash应用于大容量的SSD U盘等。
+
+CMOS（Complementary Metal Oxide Seiconductor）
+    互补金属氧化物半导体。CMOS本是一种半导体技术，属于数字电路的范畴。为了避免乱制造新词造成混乱，人们干脆将采用该技术制
+    程和生产出的元件或芯片也叫作CMOS，比如数码相机的传感器就叫做CMOS。电脑中有一个采用CMOS技术的芯片，所以这个芯片直接就
+    叫做CMOS芯片，它是个随机存储器RAM芯片，所以CMOS芯片指的是一个采用CMOS技术来保存数据的存储器。
+
+CMOS设置信息：
+    保存于CMOS芯片中电脑硬件配置信息和其他一些有关信息，例如系统时间、日期、硬盘参数与计算机启动顺序配置信息等。传统上
+    CMOS芯片是RAM而非NvRAM，因此需要通过一个3.3V的锂电池来供电，而这个电池同时为主板的实时时钟寄存器RTC（Real Time Cloc）
+    供电；而目前UEFI BIOS的主板已经开始在BIOS芯片（NvRAM）内存储这些计算机配置信息，因此主板电池没电了，这些设置依然不会
+    丢失，而唯一丢失的就是RTC寄存器中存储的时钟信息。
+
+CMOS芯片中存储的CMOS位置信息需要使用CMOS设置程序进行设置和修改，CMOS的设置程序是BIOS程序的功能之一，而BIOS程序有时存在
+BIOS芯片中的，所以原则上应该这样描述：用存储在BIOS芯片中的BIOS程序中的CMOS设置功能对CMOS芯片中存储的CMOS设置信息进行设置
+。但这种准确的阐述显得非常长，也有些拗口。于是干脆就把它简单称作BIOS设置或者叫做CMOS设置。但是一定要明白：CMOS设置才是正
+确的，而BIOS根本没有设置这一说，它本身只是一个程序，实现一些功能而已，BIOS程序本身不需要任何设置。
+
+EFI（Extensible Firmware Interface）,它是intel为PC固件的体系结构、接口和服务提出的建议标准，其主要目的为了提供一组在操作
+系统启动前在所有平台上一致的正确的启动服务，被看做是有近20年历史的BIOS的继任者。为推广EFI，intel联合业界多家著名公司共同
+成立了统一可扩展固件接口论坛（UEFI Forum）。
+
+UEFI（Unified Extensible Firmware Interface）是有EFI 1.10为基础发展起来的，其所有者不再是Intel，而是UEFI Forum。目前也被
+称为UEFI BIOS。
+
+CSM（Compatibility Support Modele），兼容性支持模块是UEFI BIOS中Boot选项里的一个子项，CSM开启后UEFI BIOS可以同时支持UEFI
+ BIOS和Legacy BIOS启动。若需要启用传统MBR磁盘设备，则必须开启CSM；关闭CSM则表示纯UEFI磁盘启动。Secure Boot（安全启动），
+它仅适用于纯UEFI BIOS的操作系统。在自带Windows 10操作系统的电脑上，Secure Boot是默认打开的，CSM是默认关闭的，这也导致了
+电脑不能启动不完全支持UEFI BIOS的磁盘设置；要使得电脑启动不完全支持UEFI BIOS的磁盘设备，就必须关闭Secure Boot并打开CSM。
+
+32位和64位UEFI BIOS区别：
+    32位UEFI固件只能启动32位支持由EFI引导的操作系统（32位Windows 10不支持EFI引导）。
+    64位UEFI固件只能启动64位支持由EFI引导的操作系统（64位WIndows 10支持EFI引导）。
+
+硬盘格式：
+    MBR（Master Boot Record）,即主引导记录
+    GPT（GUID Partion Table）,即全局唯一标识分区表
+
+GPT和MBR区别：
+    1. GPT能是一个大于2.2T的硬盘，MBR不行，最大支持2.19T。
+    2. GPT可以支持无线个分区，微软目前的限定是128个。MBR最多4个主分区，超过4个再分区只能通过逻辑分区。
+    3. GPT分区磁盘有备份分区表来提高分区数据结构的完整性。
+
+组合方式：Legacy BIOS + MBR; UEFI BIOS + GPT
