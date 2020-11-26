@@ -22,6 +22,9 @@ kb_listener.py
 kb_listener2.py  
 监听一次  
 
+kb_listener3.py  
+使用pyHook监听，可以监听到scancode等，可以区分小键盘
+
 # mouse_kb_listener_ui
 mouse_disable.py  
 使用user32.dll禁用和打开鼠标键盘    

@@ -15,6 +15,7 @@ from pynput import keyboard
 
 def on_press(key):
     # 通过属性判断按键类型
+    print(key)
     try:
         print("alphanumeric key {0} pressed".format(
             key.char))

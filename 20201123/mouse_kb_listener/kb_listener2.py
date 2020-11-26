@@ -28,8 +28,7 @@ elif isinstance(key_event, pynput.keyboard.Events.Release):
     print('松开按键', end='')
 
 # 判断按键：
-
-# *这个事件的`key`属性*对应才是*Listener方法获得的按键`'key'`*。
+# *这个事件的`key`属性*对应才是*Listen1er方法获得的按键`'key'`*。
 
 try:
     print(key_event.key.name)
