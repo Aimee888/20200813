@@ -17,13 +17,15 @@ mouse_listener2.py
   
 ## 键盘监听
 kb_listener.py  
-捕捉键盘按压与释放的按键键值，如果释放了ESC按键，则停止监控键盘
+捕捉键盘按压与释放的按键键值，如果释放了ESC按键，则停止监控键盘  
+缺点：无法区分小键盘的enter和左边的enter按键等
 
 kb_listener2.py  
 监听一次  
 
 kb_listener3.py  
-使用pyHook监听，可以监听到scancode等，可以区分小键盘
+使用pyHook监听，可以监听到scancode等，可以区分小键盘  
+缺点：带UI的时候点击太快容易卡顿
 
 # mouse_kb_listener_ui
 mouse_disable.py  
