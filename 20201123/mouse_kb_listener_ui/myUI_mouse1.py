@@ -69,29 +69,29 @@ class QmyWidget(QWidget):
         self.timer.start()
 
         # Remove all usb driver
-        os.system("devcon.exe remove *USB*")
+        # os.system("devcon.exe remove *USB*")
 
     def init_interface(self):
         self.ui.label.setText("The test will exit in 20s")
 
     def init_mylabel(self):
-        self.mylabel.setGeometry(10, 60, 300, 300)
+        self.mylabel.setGeometry(10, 60, 91, 85)
         pixmap_left = QPixmap("./pic/default.bmp")
         self.mylabel.setPixmap(pixmap_left)
         self.mylabel.setScaledContents(True)
 
     def init_mylabel_text(self):
-        self.mylabel_text.setText("Please double click mouse left key")
+        self.mylabel_text.setText("Double Click Left Button")
         font = self.mylabel_text.font()
         font.setPointSize(14)
         self.mylabel_text.setFont(font)
         label_size = self.mylabel_text.sizeHint()
-        self.mylabel_text.setGeometry(10, 370, label_size.width(), label_size.height())
+        self.mylabel_text.setGeometry(10, 155, label_size.width(), label_size.height())
 
     def init_mylabel_right(self):
         width_widget = self.width()
         height_widget = self.height()
-        self.mylabel_right.setGeometry(int(width_widget - 330), int(height_widget - 330), 300, 300)
+        self.mylabel_right.setGeometry(int(width_widget - 121), int(height_widget - 115), 91, 85)
         pixmap_right = QPixmap("./pic/default.bmp")
         self.mylabel_right.setPixmap(pixmap_right)
         self.mylabel_right.setScaledContents(True)
@@ -99,25 +99,29 @@ class QmyWidget(QWidget):
     def init_mylabel_right_text(self):
         width_widget = self.width()
         height_widget = self.height()
-        self.mylabel_right_text.setText("Please double click mouse right key")
+        self.mylabel_right_text.setText("Double Click Right Button")
         font = self.mylabel_right_text.font()
         font.setPointSize(14)
         self.mylabel_right_text.setFont(font)
         label_size_right = self.mylabel_right_text.sizeHint()
-        self.mylabel_right_text.setGeometry(int(width_widget - 330), int(height_widget - 30), label_size_right.width(),
+        self.mylabel_right_text.setGeometry(int(width_widget - 230), int(height_widget - 30), label_size_right.width(),
                                             label_size_right.height())
 
     def do_timer_timeout(self):
         time_end = 20
         self.timer_numer = self.timer_numer + 1
         self.ui.label.setText("The test will exit in {}s".format(time_end - self.timer_numer))
+        if self.number_left_mouse >= 1 and self.number_right_mouse >= 1:
+            self.timer.stop()
+            self.close()
         if self.timer_numer == time_end:
             self.timer.stop()
             with open("timeout.txt", "w") as f:
                 f.write("timeout")
             # Recovery all USB driver
-            os.system("devcon.exe rescan")
-            os.system(r"""reg add HKLM\SYSTEM\CurrentControlSet\Services\UsbStor /v "Start" /t REG_DWORD /d "3" /f""")
+            # os.system("devcon.exe rescan")
+            # os.system(r"""reg add HKLM\SYSTEM\CurrentControlSet\Services\UsbStor /v "Start" /t REG_DWORD /d "3" /f""")
+            print("fail")
             self.close()
 
     def do_mylabel_left_double_clicked(self):
@@ -125,20 +129,22 @@ class QmyWidget(QWidget):
         self.mylabel.setPixmap(pixmap)
         self.number_left_mouse = self.number_left_mouse + 1
         if self.number_left_mouse >= 1 and self.number_right_mouse >= 1:
-            self.timer.stop()
-            os.system("devcon.exe rescan")
-            os.system(r"""reg add HKLM\SYSTEM\CurrentControlSet\Services\UsbStor /v "Start" /t REG_DWORD /d "3" /f""")
-            self.close()
+            # self.timer.stop()
+            print("pass")
+            # os.system("devcon.exe rescan")
+            # os.system(r"""reg add HKLM\SYSTEM\CurrentControlSet\Services\UsbStor /v "Start" /t REG_DWORD /d "3" /f""")
+            # self.close()
 
     def do_mylabel_right_double_clicked(self):
         pixmap_right = QPixmap("./pic/right.bmp")
         self.mylabel_right.setPixmap(pixmap_right)
         self.number_right_mouse = self.number_right_mouse + 1
         if self.number_left_mouse >= 1 and self.number_right_mouse >= 1:
-            self.timer.stop()
-            os.system("devcon.exe rescan")
-            os.system(r"""reg add HKLM\SYSTEM\CurrentControlSet\Services\UsbStor /v "Start" /t REG_DWORD /d "3" /f""")
-            self.close()
+            # self.timer.stop()
+            print("pass")
+            # os.system("devcon.exe rescan")
+            # os.system(r"""reg add HKLM\SYSTEM\CurrentControlSet\Services\UsbStor /v "Start" /t REG_DWORD /d "3" /f""")
+            # self.close()
 
 
 if __name__ == '__main__':

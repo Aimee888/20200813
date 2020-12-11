@@ -110,8 +110,8 @@ class QmyWidget(QWidget):
             '7': self.ui.num_7_,
             '8': self.ui.num_8_,
             '9': self.ui.num_9_,
-            '-': self.ui.btn_dec_,
-            '=': self.ui.btn_add_,
+            '-': self.ui.btn_minus_,
+            '=': self.ui.btn_plus_,
             '[': self.ui.btn_left_bracket_,
             ']': self.ui.btn_right_bracket_,
             '\\': self.ui.btn_slash_,
@@ -158,19 +158,20 @@ class QmyWidget(QWidget):
             'end': self.ui.btn_end_,
             'page_down': self.ui.btn_pagedown_,
             'esc': self.ui.btn_esc_,
-            '<105>': self.ui.num_9_,
-            '<104>': self.ui.num_8_,
-            '<103>': self.ui.num_7_,
-            '<102>': self.ui.num_6_,
-            '<101>': self.ui.num_5_,
-            '<100>': self.ui.num_4_,
-            '<99>': self.ui.num_3_,
-            '<98>': self.ui.num_2_,
-            '<97>': self.ui.num_1_,
-            '<96>': self.ui.num_0_,
-            '<110>': self.ui.btn_dot_,
+            '<105>': self.ui.btn_numpad9_,
+            '<104>': self.ui.btn_numpad8_,
+            '<103>': self.ui.btn_numpad7_,
+            '<102>': self.ui.btn_numpad6_,
+            '<101>': self.ui.btn_numpad5_,
+            '<100>': self.ui.btn_numpad4_,
+            '<99>': self.ui.btn_numpad3_,
+            '<98>': self.ui.btn_numpad2_,
+            '<97>': self.ui.btn_numpad1_,
+            '<96>': self.ui.btn_numpad0_,
+            '<110>': self.ui.btn_decimal_,
             '+': self.ui.btn_add_,
-            '*': self.ui.num_8_,
+            '*': self.ui.btn_multiply_,
+            'num_lock': self.ui.btn_numlock_,
         }
         for i, keyname in enumerate(key_name.keys()):
             if keyname == name:
@@ -185,8 +186,8 @@ class QmyWidget(QWidget):
         else:
             self.get_key(name).setStyleSheet("QPushButton{background-color:rgb(170,200,50)}")
             list1 = sorted(set(self.key_set), key=self.key_set.index)
-            if len(list1) == 84:
-                self.close()
+            # if len(list1) == 84:
+            #     self.close()
 
 
 def start_window():

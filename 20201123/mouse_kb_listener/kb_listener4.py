@@ -34,6 +34,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.KEYDOWN:
+            print(event.key)
     keys = pygame.key.get_pressed()  # 检查按键是按下
     if keys[pygame.K_RIGHT] and rect1.right < screen.get_width():  # 按向右键且未达右边界
         rect1.centerx += dx  # 向右移动

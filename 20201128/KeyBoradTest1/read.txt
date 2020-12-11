@@ -1,0 +1,3 @@
+1. 如果按空格键，空格键没有变色，说明此时界面上焦点在button上，按空格相当于点击button的效果。默认焦点是会在Button上。
+解决方法，在做UI时把所有Button都设为Disable模式，即在UI设置界面将enable那个勾勾去掉。
+2. UI里面监听键盘按键如果是截屏键会首先被拦截，而触发不了keyBoardRelease函数，所以可以配合使用pynput函数来监听截屏键。

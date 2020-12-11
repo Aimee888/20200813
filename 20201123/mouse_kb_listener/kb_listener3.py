@@ -27,10 +27,10 @@ def onKeyboardEvent(event):
     # print("Time:", event.Time)
     # print("Window:", event.Window)
     # print("WindowName:", event.WindowName)
-    # print("Ascii:", event.Ascii, chr(event.Ascii))
+    print("Ascii:", event.Ascii, chr(event.Ascii))
     print("Key:", event.Key)
-    # print("KeyID:", event.KeyID)
-    # print("ScanCode:", event.ScanCode)
+    print("KeyID:", event.KeyID)
+    print("ScanCode:", event.ScanCode)
     print("Extended:", event.Extended)
     # print("Injected:", event.Injected)
     # print("Alt", event.Alt)
@@ -38,7 +38,8 @@ def onKeyboardEvent(event):
     # print("---")
     print("")
     # 同鼠标事件监听函数的返回值as
-    return True
+    # return True
+    return False  # 屏蔽按键功能
 
 
 def main():
